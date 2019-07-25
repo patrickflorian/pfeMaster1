@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "pfe_Master1",
+    "username": "pfe_master1",
     "password": "pfe_Master1_password",
-    "database": "pfe_Master1_db",
-    "host": "127.0.0.1",
+    "database": "pfe_master1_db",
+    "host": "www.db4free.net",
     "dialect": "mysql",
     "port": 3306
   },

@@ -1,6 +1,12 @@
 let LocalStrategy = require('passport-local').Strategy;
+let BearerStrategy = require('passport-http-bearer').Strategy;
 
 let bcrypt = require('bcrypt');
+let jwt = require('jsonwebtoken');
+let JWTStrategy = require('passport-jwt').Strategy;
+let ExtractJWT = require('passport-jwt').ExtractJwt;
+let config = require('./controllers/config');
+
 let models = require('./models');
 let flash = require('connect-flash');
 
@@ -47,9 +53,20 @@ module.exports = function(passport) {
             req = flash('message', 'Incorrect credentials.')
             return done(null, false)
          }
+         console.log(user);
+        
          return done(null, user);
       }).catch(err => {
          done(err, false);
       })
-   }))
+   }));
+   passport.use(new BearerStrategy(
+      function(token,done){
+         models.User.findOne({where:{token:token}}).then((user,err,)=>{
+            if(err) { return done(err);}
+            if(!user) { return done(null,false); }
+            else {return done(null, user);}
+         });
+      }
+   ));
 }

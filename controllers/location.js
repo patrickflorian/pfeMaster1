@@ -5,11 +5,12 @@ exports.home = function(req, res, next) {
   }
 
   exports.submit_location = function(req, res, next) {
+    console.log(req.body)
     return models.Location.create({
-      classroom: req.body.location_classroom,
-      description: req.body.location_description,
-      longitude: req.body.location_longitude,
-      latitude: req.body.location_latitude
+      classroom: req.body.classroom,
+      description: req.body.description,
+      longitude: req.body.longitude,
+      latitude: req.body.latitude
     }).then(location => {
       res.json(location);
       /* res.render('location/locations', {title: 'Express', locations: locations}); */
@@ -47,23 +48,29 @@ exports.home = function(req, res, next) {
 
   exports.edit_location = function(req, res, next) {
     req.params.location_id
-    req.body.location_classroom
-    req.body.location_description
-    req.body.location_longitude
-    req.body.location_latitude
+    req.body.classroom
+    req.body.description
+    req.body.longitude
+    req.body.latitude
 
     return models.Location.update({
-      classroom: req.body.location_classroom,
-      description: req.body.location_description,
-      longitude: req.body.location_longitude,
-      latitude: req.body.location_latitude
+      classroom: req.body.classroom,
+      description: req.body.description,
+      longitude: req.body.longitude,
+      latitude: req.body.latitude
     }, {
       where: {
         id: req.params.location_id
       }
     }).then(result => {
-      res.json(result);
-    })
+      if(result==1){
+        models.Location.findOne({where:{id:req.params.location_id}}).then((user)=>{
+          console.log(user)
+          res.json( user);
+       });
+       
+      }else res.status(304);  
+    });
   }
 
   exports.delete_location = function(req, res, next) {

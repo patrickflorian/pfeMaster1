@@ -32,6 +32,11 @@ module.exports = (sequelize, DataTypes) => {
         is_admin: {
             type: DataTypes.BOOLEAN,
             allowNull: true
+        },
+        token:{
+            type:DataTypes.STRING,
+            defaultValue:DataTypes.UUIDV4,
+            allowNull:true
         }
     })
     return User;

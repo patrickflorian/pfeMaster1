@@ -25,7 +25,13 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT,
             allowNull: false
         }
-    });
+    },
+    {
+    uniqueKeys: {
+      actions_unique: {
+          fields: ['latitude', 'longitude']
+      }}
+});
     
     return Location;
 }
