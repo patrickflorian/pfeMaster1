@@ -1,24 +1,26 @@
 {
   "development": {
-    "username": "pfe_master1",
-    "password": "pfe_Master1_password",
-    "database": "pfe_master1_db",
-    "host": "www.db4free.net",
+    "username": "GwvpvrqYpz",
+    "password": "wprWQ64zJB",
+    "database": "GwvpvrqYpz",
+    "host": "www.remotemysql.com",
     "dialect": "mysql",
     "port": 3306
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    ""username": "GwvpvrqYpz",
+    "password": "wprWQ64zJB",
+    "database": "GwvpvrqYpz",
+    "host": "www.remotemysql.com",
+    "dialect": "mysql",
+    "port": 3306
   },
   "production": {
-    "username": "pfe_master1",
-    "password": "pfe_Master1_password",
-    "database": "pfe_master1_db",
-    "host": "www.db4free.net",
-    "dialect": "mysql"
+    "username": "GwvpvrqYpz",
+    "password": "wprWQ64zJB",
+    "database": "GwvpvrqYpz",
+    "host": "www.remotemysql.com",
+    "dialect": "mysql",
+    "port": 3306
   }
 }
