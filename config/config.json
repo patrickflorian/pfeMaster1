@@ -8,7 +8,7 @@
     "port": 3306
   },
   "test": {
-    ""username": "GwvpvrqYpz",
+    "username": "GwvpvrqYpz",
     "password": "wprWQ64zJB",
     "database": "GwvpvrqYpz",
     "host": "www.remotemysql.com",
