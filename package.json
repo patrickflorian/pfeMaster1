@@ -29,9 +29,10 @@
     "rand-token": "^0.4.0",
     "sequelize": "^5.8.6",
     "socket.io": "^2.2.0",
-    "validator": "^11.0.0"
+    "validator": "^11.0.0",
+    "passport-http-bearer": "^1.0.1"
   },
   "devDependencies": {
-    "passport-http-bearer": "^1.0.1"
+    
   }
 }
