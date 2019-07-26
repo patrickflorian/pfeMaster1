@@ -40,7 +40,7 @@ router.post('/api/location/'/*, passport.authenticate('bearer',{session:false})*
    location.submit_location
 );
 
-router.get('/api/locations '/*, passport.authenticate('bearer',{session:false}),isLoggedIn*/, location.show_locations);
+router.get('/api/locations ', location.show_locations);
 router.get("/api/location/:location_id", passport.authenticate('bearer',{session:false}) /*,isLoggedIn*/, location.show_location);
 
 //router.get('/api/location/:location_id/edit', passport.authenticate('bearer',{session:false}), location.show_edit_location);
