@@ -13,7 +13,7 @@ let { isLoggedIn, hasAuth } = require('../middleware/hasAuth');
 router.get('/api/login', user.show_login);
 router.get('/api/signup', user.show_signup);
 router.post('/api/login', 
-	passport.authenticate('local'),
+	//passport.authenticate('local'),
 	function(req, res) {
 		res.json(req.user);
 	});
