@@ -1,26 +1,26 @@
 {
   "development": {
-    "username": "oBoc1o1hKr",
-    "password": "8WhRXR0ZE5",
-    "database": "oBoc1o1hKr",
-    "host": "www.remotemysql.com",
+    "username": "admin",
+    "password": "securityfofadmin",
+    "database": "securityfof",
+    "host": "mysql-38560-0.cloudclusters.net",
     "dialect": "mysql",
-    "port": 3306
+    "port": 38560
   },
   "test": {
-    "username": "oBoc1o1hKr",
-    "password": "8WhRXR0ZE5",
-    "database": "oBoc1o1hKr",
-    "host": "www.remotemysql.com",
+    "username": "admin",
+    "password": "securityfofadmin",
+    "database": "securityfof",
+    "host": "mysql-38560-0.cloudclusters.net",
     "dialect": "mysql",
-    "port": 3306
+    "port": 38560
   },
   "production": {
-    "username": "oBoc1o1hKr",
-    "password": "8WhRXR0ZE5",
-    "database": "oBoc1o1hKr",
-    "host": "www.remotemysql.com",
+    "username": "admin",
+    "password": "securityfofadmin",
+    "database": "securityfof",
+    "host": "mysql-38560-0.cloudclusters.net",
     "dialect": "mysql",
-    "port": 3306
+    "port": 38560
   }
 }

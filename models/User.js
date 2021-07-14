@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             allowNull: true
         },
+        is_manager: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true
+        },
         token:{
             type:DataTypes.STRING,
             defaultValue:DataTypes.UUIDV4,
