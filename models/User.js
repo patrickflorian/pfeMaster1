@@ -1,6 +1,29 @@
 'use strict'
+
+const { Model } = require("sequelize/types");
+/** @var DataTypes DataType */
 module.exports = (sequelize, DataTypes) => {
-    var User = sequelize.define('User', {
+    const PROTECTED_ATTRIBUTES = ['password'];
+    class User extends Model {
+        toJSON() {
+            // hide protected fields
+            const attributes = { ...this.get() };
+            // eslint-disable-next-line no-restricted-syntax
+            for (const a of PROTECTED_ATTRIBUTES) {
+                delete attributes[a];
+            }
+            return attributes;
+        }
+        /**
+         * Helper method for defining associations.
+         * This method is not a part of Sequelize lifecycle.
+         * The `models/index` file will call this method automatically.
+         */
+        static associate(models) {
+            // define association here
+        }
+    }
+    User.init({
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -22,7 +45,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: true,
+
         },
         email: {
             type: DataTypes.STRING,
@@ -37,11 +61,17 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             allowNull: true
         },
-        token:{
-            type:DataTypes.STRING,
-            defaultValue:DataTypes.UUIDV4,
-            allowNull:true
+        token: {
+            type: DataTypes.STRING,
+            defaultValue: DataTypes.UUIDV4,
+            allowNull: true
         }
-    })
+    },
+        {
+            // Other model options go here
+            sequelize, // We need to pass the connection instance
+            modelName: 'User' // We need to choose the model name
+        });
+
     return User;
 }

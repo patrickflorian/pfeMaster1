@@ -1,7 +1,9 @@
 'use strict';
 
+const User = require("./User");
+
 module.exports = (sequelize, DataTypes) => {
-    var Location = sequelize.define('Location', {
+    var Document = sequelize.define('Document', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -9,13 +11,9 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true
         },
-        classroom: {
+        type: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        description: {
-            type: DataTypes.STRING,
-            allowNull: true
         },
         longitude: {
             type: DataTypes.FLOAT,
@@ -27,11 +25,12 @@ module.exports = (sequelize, DataTypes) => {
         }
     },
     {
-    uniqueKeys: {
-      actions_unique: {
-          fields: ['latitude', 'longitude']
-      }}
-});
-    
-    return Location;
+        /* uniqueKeys: {
+            actions_unique: {
+                fields: ['latitude', 'longitude']
+            }
+        } */
+    });
+    Document.hasOne(User);
+    return Document;
 }

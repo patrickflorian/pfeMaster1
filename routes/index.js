@@ -4,7 +4,7 @@ var router = express.Router();
 const passport = require('passport');
 
 
-let location = require('../controllers/location');
+// let location = require('../controllers/location');
 let user = require('../controllers/user');
 
 let { isLoggedIn, hasAuth } = require('../middleware/hasAuth');
@@ -35,19 +35,19 @@ router.delete('/api/user/:user_id/delete', passport.authenticate('bearer',{sessi
 
 
 /* Location routes. */
-router.get('/', location.home); 
-router.post('/api/location/'/*, passport.authenticate('bearer',{session:false})*/,  
-   location.submit_location
-);
+// router.get('/', location.home); 
+// router.post('/api/location/'/*, passport.authenticate('bearer',{session:false})*/,  
+//    location.submit_location
+// );
 
-router.get('/api/locations', location.show_locations);
-router.get("/api/location/:location_id", passport.authenticate('bearer',{session:false}) /*,isLoggedIn*/, location.show_location);
+// router.get('/api/locations', location.show_locations);
+// router.get("/api/location/:location_id", passport.authenticate('bearer',{session:false}) /*,isLoggedIn*/, location.show_location);
 
-//router.get('/api/location/:location_id/edit', passport.authenticate('bearer',{session:false}), location.show_edit_location);
-router.put('/api/location/:location_id/edit', passport.authenticate('bearer',{session:false}), location.edit_location);
+// //router.get('/api/location/:location_id/edit', passport.authenticate('bearer',{session:false}), location.show_edit_location);
+// router.put('/api/location/:location_id/edit', passport.authenticate('bearer',{session:false}), location.edit_location);
 
-router.delete('/api/location/:location_id/delete', passport.authenticate('bearer',{session:false}), location.delete_location);
-//router.post('/api/location/:location_id/delete-json', hasAuth, location.delete_location_json);
+// router.delete('/api/location/:location_id/delete', passport.authenticate('bearer',{session:false}), location.delete_location);
+// //router.post('/api/location/:location_id/delete-json', hasAuth, location.delete_location_json);
 
 
 module.exports = router;
