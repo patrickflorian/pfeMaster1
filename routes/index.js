@@ -9,6 +9,12 @@ let user = require('../controllers/user');
 
 let { isLoggedIn, hasAuth } = require('../middleware/hasAuth');
 
+const multerConfig = require("../config/multer");
+
+router.post('/test', multerConfig.saveToUploads, (req, res) => {
+    return res.json("file uploaded successfully");
+});
+
 /* Authentication routes. */
 router.get('/api/login', user.show_login);
 router.get('/api/signup', user.show_signup);
