@@ -15,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        longitude: {
+        title: {
             type: DataTypes.FLOAT,
             allowNull: false
         },
-        latitude: {
+        fileUrl: {
             type: DataTypes.FLOAT,
             allowNull: false
         }
