@@ -1,6 +1,6 @@
 'use strict';
 
-const User = require("./User");
+const models = require("../models");
 
 module.exports = (sequelize, DataTypes) => {
     var Message = sequelize.define('Message', {
@@ -24,6 +24,8 @@ module.exports = (sequelize, DataTypes) => {
             }
         } */
     });
-    Message.hasOne(User);
+    Message.associate = (models)=>{
+        Message.belongsTo(models.User);
+    } 
     return Message;
 }

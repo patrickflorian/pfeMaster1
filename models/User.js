@@ -1,6 +1,7 @@
 'use strict'
 
-const { Model } = require("sequelize/types");
+const { Model } = require("sequelize");
+
 /** @var DataTypes DataType */
 module.exports = (sequelize, DataTypes) => {
     const PROTECTED_ATTRIBUTES = ['password'];

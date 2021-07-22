@@ -1,6 +1,5 @@
 'use strict';
-
-const User = require("./User");
+const models = require("../models");
 
 module.exports = (sequelize, DataTypes) => {
     var Document = sequelize.define('Document', {
@@ -31,6 +30,8 @@ module.exports = (sequelize, DataTypes) => {
             }
         } */
     });
-    Document.hasOne(User);
+    Document.associate = (models)=>{
+        Document.belongsTo(models.User);
+    } ;
     return Document;
 }

@@ -1,5 +1,5 @@
 
-const User = require("./User");
+const models = require("../models");
 
 module.exports = (sequelize, DataTypes) => {
     var Formation = sequelize.define('Formation', {
@@ -30,6 +30,8 @@ module.exports = (sequelize, DataTypes) => {
             }
         } */
     });
-    Formation.hasOne(User);
+    Formation.associate = (models)=>{
+        Formation.belongsTo(models.User);
+    } 
     return Formation;
 }
