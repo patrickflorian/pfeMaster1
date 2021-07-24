@@ -20,8 +20,16 @@ module.exports = (sequelize, DataTypes) => {
         },
         fileUrl: {
             type: DataTypes.FLOAT,
+            allowNull: true
+        },
+        projet: {
+            type: DataTypes.STRING,
             allowNull: false
-        }
+        },
+        dateAjout: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
     },
     {
         /* uniqueKeys: {
