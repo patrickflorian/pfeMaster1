@@ -11,9 +11,6 @@ let { isLoggedIn, hasAuth } = require('../middleware/hasAuth');
 
 const multerConfig = require("../config/multer");
 
-router.post('/test', multerConfig.saveToUploads, (req, res) => {
-    return res.json("file uploaded successfully");
-});
 
 /* Authentication routes. */
 router.get('/api/login', user.show_login);
@@ -31,7 +28,10 @@ router.get('/api/logout', user.logout); */
 /** Users routes */
 router.get('/api/users' ,passport.authenticate('bearer',{session:false}), user.show_users);
 router.get("/api/user/:user_id", passport.authenticate('bearer',{session:false}), user.show_user);
-
+/** mettre a jour la photo de profile */
+router.post('/api/user/:user_id/image', multerConfig.saveToUploads, (req, res) => {
+    return res.json("file uploaded successfully");
+});
 /* router.get('/api/user/:user_id/edit', hasAuth, user.show_edit_user);
  */
 router.put('/api/user/:user_id/edit', passport.authenticate('bearer',{session:false}), user.edit_user);
