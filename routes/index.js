@@ -4,7 +4,7 @@ var router = express.Router();
 const passport = require('passport');
 
 
-// let location = require('../controllers/location');
+let document = require('../controllers/document');
 let user = require('../controllers/user');
 
 let { isLoggedIn, hasAuth } = require('../middleware/hasAuth');
@@ -34,26 +34,26 @@ router.post('/api/user/:user_id/image', multerConfig.saveToUploads, (req, res) =
 });
 /* router.get('/api/user/:user_id/edit', hasAuth, user.show_edit_user);
  */
-router.put('/api/user/:user_id/edit', passport.authenticate('bearer',{session:false}), user.edit_user);
+router.put('/api/user/:user_id/edit'/* , passport.authenticate('bearer',{session:false}) */, user.edit_user);
 
-router.delete('/api/user/:user_id/delete', passport.authenticate('bearer',{session:false}), user.delete_user);
+router.delete('/api/user/:user_id/delete'/* , passport.authenticate('bearer',{session:false}) */, user.delete_user);
 //router.post('/api/user/:user_id/delete-json', hasAuth, user.delete_user_json);
 
 
-/* Location routes. */
-// router.get('/', location.home); 
-// router.post('/api/location/'/*, passport.authenticate('bearer',{session:false})*/,  
-//    location.submit_location
-// );
+/* Document routes. */
+// router.get('/', document.home); 
+router.post('/api/documents'/*, passport.authenticate('bearer',{session:false})*/,  
+  document.submit_document
+);
 
-// router.get('/api/locations', location.show_locations);
-// router.get("/api/location/:location_id", passport.authenticate('bearer',{session:false}) /*,isLoggedIn*/, location.show_location);
+router.get('/api/documents', document.show_documents);
+router.get("/api/documents/:document_id", passport.authenticate('bearer',{session:false}) /*,isLoggedIn*/, document.show_document);
 
-// //router.get('/api/location/:location_id/edit', passport.authenticate('bearer',{session:false}), location.show_edit_location);
-// router.put('/api/location/:location_id/edit', passport.authenticate('bearer',{session:false}), location.edit_location);
+// //router.get('/api/document/:document_id/edit', passport.authenticate('bearer',{session:false}), document.show_edit_document);
+router.put('/api/documents/:document_id/edit', /* passport.authenticate('bearer',{session:false}), */ document.edit_document);
 
-// router.delete('/api/location/:location_id/delete', passport.authenticate('bearer',{session:false}), location.delete_location);
-// //router.post('/api/location/:location_id/delete-json', hasAuth, location.delete_location_json);
+router.delete('/api/documents/:document_id/delete',/*  passport.authenticate('bearer',{session:false}), */ document.delete_document);
+router.post('/api/documents/:document_id/delete-json',/*  hasAuth, */ document.delete_document_json);
 
 
 module.exports = router;
