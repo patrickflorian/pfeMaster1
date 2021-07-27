@@ -5,30 +5,40 @@ exports.home = function (req, res, next) {
 }
 
 exports.submit_document = function (req, res, next) {
-        console.log(req.body);
-    try {
-        models.Document.create({
+    const docObject = req.file ?
+        {
             type: req.body.type,
             title: req.body.title,
             projet: req.body.projet,
             dateAjout: req.body.dateAjout,
-            User: {
-                ...req.body.User
-            }
-        }, {
-            include: [ models.User ]
-          }).then(document => {
-            document.save();
-            res.json(document);
+            fileUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        } : {
+            type: req.body.type,
+            title: req.body.title,
+            projet: req.body.projet,
+            dateAjout: req.body.dateAjout,
+        };
+    try {
+        models.Document.create(docObject
+            /* , { include: [ models.User ] } */
+            ).then(document => {
+            models.User.findOne({
+                where: { id: req.body.User.id }
+            }).then((instanceUSer) => {
+                document.setUser(instanceUSer)
+                document.save();
+                res.json(document);
+            })
             /* res.render('document/documents', {title: 'Express', documents: documents}); */
-        })}
-    catch(e){
+        })
+    }
+    catch (e) {
         console.log(e);
     }
 }
 
 exports.show_documents = function (req, res, next) {
-    if(req.params.type_id){
+    if (req.params.type_id) {
         models.Document.findAll({
             where: {
                 type: req.params.type_id
@@ -39,10 +49,10 @@ exports.show_documents = function (req, res, next) {
         })
     }
     else
-    models.Document.findAll().then(documents => {
-        res.json(documents);
-        /* res.render('document/documents', {title: 'Express', documents: documents}); */
-    })
+        models.Document.findAll().then(documents => {
+            res.json(documents);
+            /* res.render('document/documents', {title: 'Express', documents: documents}); */
+        })
 }
 
 exports.show_document = function (req, res, next) {
@@ -68,11 +78,24 @@ exports.show_edit_document = function (req, res, next) {
 }
 
 exports.edit_document = function (req, res, next) {
-    req.params.document_id
-    req.body.classroom
-    req.body.description
-    req.body.longitude
-    req.body.latitude
+
+    const docObject = req.file ?
+        {
+            type: req.body.type,
+            title: req.body.title,
+            projet: req.body.projet,
+            dateAjout: req.body.dateAjout,
+            fileUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        } : {
+            type: req.body.type,
+            title: req.body.title,
+            projet: req.body.projet,
+            dateAjout: req.body.dateAjout,
+            fileUrl: req.body.fileUrl,
+        };
+    models.Document.updateOne({ id: req.params.document_id }, { ...docObject, id: req.params.document_id })
+        .then((doc) => res.status(200).json(doc))
+        .catch(error => res.status(400).json({ error }));
 
     return models.Document.update({
         type: req.body.type,

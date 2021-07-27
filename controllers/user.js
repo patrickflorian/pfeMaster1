@@ -47,20 +47,11 @@ exports.signup = function(req, res, next) {
                         username: req.body.username,
                         firstname: req.body.firstname,
                         lastname: req.body.lastname,
+                        profession: req.body.profession,
                         is_admin: true
                     });
                 } 
                 return newUser.save().then(result => {
-                    /* passport.authenticate('local', {
-                        successRedirect: '/',
-                        failureRedirect: '/api/signup',
-                        failureFlash: true
-                    })(req, res, next); */
-
-                    /* passport.authenticate('local'),
-                    function(req, res) {
-                        res.json({ id: req.user.id, email: req.user.email});
-                    } */
                     res.json(result);
                 })
             })

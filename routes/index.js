@@ -42,19 +42,16 @@ router.delete('/api/user/:user_id/delete', user.delete_user);
 
 /* Document routes. */
 // router.get('/', document.home); 
-router.post('/api/documents',  
-  document.submit_document
-);
-
+router.post('/api/documents', multerConfig.saveToUploads, document.submit_document );
 router.get('/api/documents', document.show_documents);
 router.get('/api/documents/type/:type_id', document.show_documents);
 router.get("/api/documents/:document_id", document.show_document);
 
 // //router.get('/api/document/:document_id/edit', passport.authenticate('bearer',{session:false}), document.show_edit_document);
-router.put('/api/documents/:document_id/edit', /* passport.authenticate('bearer',{session:false}), */ document.edit_document);
+router.put('/api/documents/:document_id/edit', document.edit_document);
 
 router.delete('/api/documents/:document_id/delete',/*  passport.authenticate('bearer',{session:false}), */ document.delete_document);
 router.post('/api/documents/:document_id/delete-json',/*  hasAuth, */ document.delete_document_json);
-
+router.post('/api/documents/:document_id/image', multerConfig.saveToUploads, document.edit_document);
 
 module.exports = router;
