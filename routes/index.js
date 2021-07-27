@@ -47,6 +47,7 @@ router.post('/api/documents',
 );
 
 router.get('/api/documents', document.show_documents);
+router.get('/api/documents/type/:type_id', document.show_documents);
 router.get("/api/documents/:document_id", document.show_document);
 
 // //router.get('/api/document/:document_id/edit', passport.authenticate('bearer',{session:false}), document.show_edit_document);

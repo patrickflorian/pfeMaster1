@@ -15,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         title: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.STRING,
             allowNull: false
         },
         fileUrl: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.STRING,
             allowNull: true
         },
         projet: {

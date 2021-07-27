@@ -5,16 +5,40 @@ exports.home = function (req, res, next) {
 }
 
 exports.submit_document = function (req, res, next) {
-    console.log(req.body)
-    return models.Document.create({...req.body}, {
-        include: [ models.User ]
-      }).then(document => {
-        res.json(document);
-        /* res.render('document/documents', {title: 'Express', documents: documents}); */
-    })
+        console.log(req.body);
+    try {
+        models.Document.create({
+            type: req.body.type,
+            title: req.body.title,
+            projet: req.body.projet,
+            dateAjout: req.body.dateAjout,
+            User: {
+                ...req.body.User
+            }
+        }, {
+            include: [ models.User ]
+          }).then(document => {
+            document.save();
+            res.json(document);
+            /* res.render('document/documents', {title: 'Express', documents: documents}); */
+        })}
+    catch(e){
+        console.log(e);
+    }
 }
 
 exports.show_documents = function (req, res, next) {
+    if(req.params.type_id){
+        models.Document.findAll({
+            where: {
+                type: req.params.type_id
+            }
+        }).then(documents => {
+            res.json(documents);
+            /* res.render('document/documents', {title: 'Express', documents: documents}); */
+        })
+    }
+    else
     models.Document.findAll().then(documents => {
         res.json(documents);
         /* res.render('document/documents', {title: 'Express', documents: documents}); */

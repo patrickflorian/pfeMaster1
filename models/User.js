@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
+            User.hasMany(models.Document)
         }
     }
     User.init({
@@ -84,6 +85,6 @@ module.exports = (sequelize, DataTypes) => {
             sequelize, // We need to pass the connection instance
             modelName: 'User' // We need to choose the model name
         });
-
+        
     return User;
 }
