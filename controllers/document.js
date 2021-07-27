@@ -6,7 +6,9 @@ exports.home = function (req, res, next) {
 
 exports.submit_document = function (req, res, next) {
     console.log(req.body)
-    return models.Document.create({...req.body}).then(document => {
+    return models.Document.create({...req.body}, {
+        include: [ models.User ]
+      }).then(document => {
         res.json(document);
         /* res.render('document/documents', {title: 'Express', documents: documents}); */
     })
