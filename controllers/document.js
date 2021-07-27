@@ -6,12 +6,7 @@ exports.home = function (req, res, next) {
 
 exports.submit_document = function (req, res, next) {
     console.log(req.body)
-    return models.Document.create({
-        type: req.body.type,
-        title: req.body.title,
-        projet: req.body.projet,
-        dateAjout: req.body.dateAjout
-    }).then(document => {
+    return models.Document.create({...req.body}).then(document => {
         res.json(document);
         /* res.render('document/documents', {title: 'Express', documents: documents}); */
     })
