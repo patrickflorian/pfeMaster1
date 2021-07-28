@@ -9,7 +9,7 @@ let user = require('../controllers/user');
 
 let { isLoggedIn, hasAuth } = require('../middleware/hasAuth');
 
-const multerConfig = require("../config/multer");
+const multerConfig = require("../multer");
 
 
 /* Authentication routes. */
@@ -42,7 +42,7 @@ router.delete('/api/user/:user_id/delete', user.delete_user);
 
 /* Document routes. */
 // router.get('/', document.home); 
-router.post('/api/documents', multerConfig.saveToUploads, document.submit_document );
+router.post('/api/documents', multerConfig.saveToUploads,  document.submit_document);
 router.get('/api/documents', document.show_documents);
 router.get('/api/documents/type/:type_id', document.show_documents);
 router.get("/api/documents/:document_id", document.show_document);

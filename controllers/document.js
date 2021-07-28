@@ -5,7 +5,7 @@ exports.home = function (req, res, next) {
 }
 
 exports.submit_document = function (req, res, next) {
-    console.log(req.body);
+   
     const docObject = req.file ?
         {
             type: req.body.type,
@@ -24,7 +24,7 @@ exports.submit_document = function (req, res, next) {
             /* , { include: [ models.User ] } */
             ).then(document => {
             models.User.findOne({
-                where: { id: req.body.User.id }
+                where: { id: req.body.userId }
             }).then((instanceUSer) => {
                 document.setUser(instanceUSer)
                 document.save();
