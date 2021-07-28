@@ -5,6 +5,7 @@ exports.home = function (req, res, next) {
 }
 
 exports.submit_document = function (req, res, next) {
+    console.log(req.body);
     const docObject = req.file ?
         {
             type: req.body.type,
